@@ -6,6 +6,8 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_USER: bruno
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: db1
     ports:
       - "5432:5432"
