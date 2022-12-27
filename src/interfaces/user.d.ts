@@ -3,3 +3,7 @@ export interface ICreateUser {
     email: string;
     password: string;
 }
+
+export interface IQueryUser {
+    user_id?: string;
+}
