@@ -14,18 +14,34 @@ model User {
   password  String    @db.VarChar(60)
   friend    String[]
   post      Post[]
+  comment   Comment[]
   
   @@map("user")
 }
 
 model Post {
-  id        String    @id @default(uuid())
-  text      String    @db.VarChar(124)
-  photo_url String[]  @db.VarChar(100)
-  createdAt DateTime  @default(now())
-
-  user      User      @relation(fields: [author_id], references: [user_id])
-  author_id String
+  post_id     String    @id @default(uuid())
+  text        String    @db.VarChar(124)
+  photo_url   String[]  @db.VarChar(100)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  like        Int
+  comment     Comment[]
+  user        User      @relation(fields: [author_id], references: [user_id])
+  author_id   String
 
   @@map("post")
+}
+
+model Comment {
+  comment_id  String    @id @default(uuid())
+  text        String    @db.VarChar(124)
+  created_at  DateTime  @default(now())
+  like        Int
+  user        User      @relation(fields: [author_id], references: [user_id])
+  author_id   String
+  post        Post      @relation(fields: [post_id], references: [post_id])
+  post_id     String
+
+@@map("comment")
 }
