@@ -9,8 +9,7 @@ const updateUserService = async (
     const user = await prisma.user
         .findUniqueOrThrow({ where: { user_id }})
         .catch( () => { throw new Error('Usuário não encontrado') })
-    
-    if( user ){
+
         const passwordHash = hashSync( password, 8 )
         const userUpdated = await prisma.user
         .update({
@@ -23,8 +22,6 @@ const updateUserService = async (
             }
         })
         return userUpdated
-    }
- 
 }
 
 export { updateUserService }
