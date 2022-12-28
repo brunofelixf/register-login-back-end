@@ -11,7 +11,7 @@ const createUserService = async ({
 }: ICreateUser ) => {
     const passwordHash = hashSync( password, 8 )
 
-     const user = await prisma.user.create({
+    const user = await prisma.user.create({
         data: {
             name,
             username,
