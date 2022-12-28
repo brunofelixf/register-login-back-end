@@ -1,17 +1,18 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { errorApp } from '../../errors/errorApp';
 import { prisma } from './../../server';
 
 const authenticateUserService =
     async ( username: string, password: string ) => {
     const user = await prisma.user
         .findUniqueOrThrow({ where: {username} })
-        .catch( () => { throw new Error('Usuário não encontrado')})
+        .catch( () => { throw new errorApp('Usuário não encontrado', 303)})
     
-    const passwordIsCorrect = await compare( password, user.password );
+    const passwordIsCorrect = await compare( password, user.password );    
 
     if( !passwordIsCorrect ){
-        throw new Error('Username ou Senha inválidos')
+        throw new errorApp('Username ou Senha inválidos', 401)
     }
 
     const token = sign(

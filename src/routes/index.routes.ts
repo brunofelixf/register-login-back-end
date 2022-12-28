@@ -10,6 +10,6 @@ routerApp.post('/user', createUserController)
 routerApp.get('/user', listUserController)
 routerApp.patch('/user', updateUserController)
 
-routerApp.post('/session', authenticateUserController)
+routerApp.post('/login', authenticateUserController)
 
 export { routerApp }
