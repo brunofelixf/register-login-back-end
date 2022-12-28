@@ -3,7 +3,7 @@ import { prisma } from "../../server"
 
 const updateUserService = async ( 
     user_id: string,
-    { name, email, password }: User ) => {
+    { name, username, email, password }: User ) => {
 
     const user = await prisma.user
         .findUniqueOrThrow({ where: { user_id }})
@@ -15,6 +15,7 @@ const updateUserService = async (
             where: { user_id: user.user_id },
             data:{
                 name: name ? name : user.name,
+                username: username ? username : user.username,
                 email: email ? email : user.email,
                 password: password ? password : user.password,
             }
