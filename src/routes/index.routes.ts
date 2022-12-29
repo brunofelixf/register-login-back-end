@@ -9,7 +9,7 @@ const routerApp = Router()
 
 routerApp.post('/user', createUserController)
 routerApp.get('/user', loginRequired, listUserController)
-routerApp.patch('/user', updateUserController)
+routerApp.patch('/user', loginRequired, updateUserController)
 
 routerApp.post('/login', authenticateUserController)
 
