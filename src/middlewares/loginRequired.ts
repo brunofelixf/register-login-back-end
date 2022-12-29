@@ -1,9 +1,9 @@
 import { IDecodedUser } from './../interfaces/user.d';
 import { errorApp } from './../errors/errorApp';
-import { NextFunction, Request, Response } from "express";
+import { RequestHandler } from "express";
 import { verify } from 'jsonwebtoken';
 
-export async function loginRequired( req: Request, res: Response, next: NextFunction) {
+export const loginRequired: RequestHandler = async ( req, res, next ) => {
     const { authorization } = req.headers;
 
     if( !authorization ){ 
@@ -14,7 +14,6 @@ export async function loginRequired( req: Request, res: Response, next: NextFunc
 
     try {
         const data = verify( token, process.env.KEY_TOKEN ) as IDecodedUser
-        console.log( data );
         
         const { name, username, user_id } = data;
 
@@ -28,6 +27,6 @@ export async function loginRequired( req: Request, res: Response, next: NextFunc
 
         return next();
     } catch (error) {
-        return res.status(401).json( error.message )
+        return res.status(401).json( { error: error.message } )
     }
 }
