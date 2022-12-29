@@ -1,6 +1,7 @@
 import * as yup from 'yup'
+import { ICreateUser } from '../../interfaces/user'
 
-const userSchema = yup.object().shape({
+const userSchema: yup.SchemaOf<ICreateUser> = yup.object().shape({
     name: yup
         .string()
         .max(60, "O nome não pode ter mais de 60 caracteres")
@@ -15,6 +16,7 @@ const userSchema = yup.object().shape({
     password: yup
         .string()
         .max(60, "A senha não pode ter mais de 60 caracteres")
+        .min(3, "A senha deve ter no mínimo 3 caracteres")
         .required("A senha é obrigatória"),
 })
 

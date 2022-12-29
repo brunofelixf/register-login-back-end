@@ -1,14 +1,15 @@
-import { NextFunction, Request, Response, urlencoded } from 'express';
-import { errorApp } from "./errorApp"
+import { NextFunction, Request, Response } from 'express';
+import { ErrorApp } from "./errorApp"
 
-const errorMiddleware = (error: Error, req: Request, res: Response, next: NextFunction) => {
-    if( error instanceof errorApp ){
-        return res.status( error.status )
-            .json({ message: error.message })
-    }
+const errorMiddleware = (
+    error: Error & Partial<ErrorApp>, 
+    req: Request, res: Response, next: NextFunction) => {
 
-    return res.status(500).json({
-        message: `Internal Server Error: ${error.message}` 
+    const statusCode = error.status ?? 500;
+    const message = error.status ? error.message : 'Inernal Server Error';
+
+    return res.status( statusCode ).json({
+        error:  message 
     })
 }
 
