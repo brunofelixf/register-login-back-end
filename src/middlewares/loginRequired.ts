@@ -1,5 +1,5 @@
 import { IDecodedUser } from './../interfaces/user.d';
-import { errorApp } from './../errors/errorApp';
+import { ErrorApp } from './../errors/errorApp';
 import { RequestHandler } from "express";
 import { verify } from 'jsonwebtoken';
 
@@ -7,7 +7,7 @@ export const loginRequired: RequestHandler = async ( req, res, next ) => {
     const { authorization } = req.headers;
 
     if( !authorization ){ 
-        throw new errorApp('Login Required', 401)
+        throw new ErrorApp('Login Required', 401)
     }
 
     const token = authorization.split(' ')[1];
