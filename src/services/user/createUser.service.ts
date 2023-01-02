@@ -3,7 +3,6 @@ import { ICreateUser } from './../../interfaces/user.d';
 import { hashSync } from 'bcryptjs'
 import { BadRequestError } from '../../errors/errorApp';
 
-
 const createUserService = async ({
     name,
     username,

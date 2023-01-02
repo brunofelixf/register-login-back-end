@@ -1,6 +1,5 @@
 import 'express-async-errors';
 import express from 'express';
-import 'express-async-errors';
 import { errorMiddleware } from './errors/errorMiddleware';
 
 import { routerApp } from './routes/index.routes';
