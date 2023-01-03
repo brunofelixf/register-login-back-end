@@ -24,6 +24,7 @@ const createUserService = async ({
             password: passwordHash
         },
         select: {
+            user_id: true,
             name: true,
             username: true,
             email: true,
