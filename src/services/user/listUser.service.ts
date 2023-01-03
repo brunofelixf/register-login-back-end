@@ -1,3 +1,4 @@
+import { NotFoundError } from "../../errors/errorApp"
 import { prisma } from "../../server"
 
 
@@ -6,8 +7,10 @@ const listUserService = async ( user_id: string | undefined ) => {
         .findMany({
             where: { user_id }
         })
-        .catch((e) => console.log(e)
-        )
+        
+        if( user.length == 0 ){
+            throw new NotFoundError("Usuário não encontrado")
+        }
 
     return user
 }

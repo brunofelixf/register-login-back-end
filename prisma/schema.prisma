@@ -28,8 +28,8 @@ model Post {
   updated_at  DateTime  @updatedAt
   like        Int       @default(0)
   comment     Comment[]
-  user        User      @relation(fields: [author_id], references: [user_id])
-  author_id   String
+  user        User      @relation(fields: [user_id], references: [user_id])
+  user_id     String
 
   @@map("post")
 }

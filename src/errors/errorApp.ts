@@ -20,3 +20,10 @@ export class NotFoundError extends ErrorApp {
         super( message, 404 )
     }
 }
+
+export class UnauthorizedError extends ErrorApp {
+
+    constructor( message: string ){
+        super( message, 401 )
+    }
+}

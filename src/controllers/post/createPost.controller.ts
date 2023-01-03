@@ -1,4 +1,3 @@
-import { ICreatePost } from './../../interfaces/post.d';
 import { Request, Response } from "express"
 import { createPostService } from '../../services/post/createPost.service';
 import { Post, User } from '@prisma/client';
