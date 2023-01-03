@@ -26,7 +26,7 @@ model Post {
   photo_url   String[]  @db.VarChar(100)
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
-  like        Int
+  like        Int       @default(0)
   comment     Comment[]
   user        User      @relation(fields: [author_id], references: [user_id])
   author_id   String
