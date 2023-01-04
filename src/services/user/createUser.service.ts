@@ -10,7 +10,8 @@ const createUserService = async ({
     password
 }: ICreateUser ) => {
 
-    const alreadyExists = prisma.user.findUnique({ where: { email } })
+    const alreadyExists = await prisma.user.findUnique({ where: { email } })
+    
     if( alreadyExists ){ throw new BadRequestError( 'Usuário já existe' ) }
 
     const passwordHash = hashSync( password, 8 )
@@ -23,6 +24,7 @@ const createUserService = async ({
             password: passwordHash
         },
         select: {
+            user_id: true,
             name: true,
             username: true,
             email: true,

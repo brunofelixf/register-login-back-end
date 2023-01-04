@@ -8,14 +8,13 @@ const createPostService = async ({
 }: ICreatePost) => {    
 
     const alreadyExists = await prisma.user.findUnique({ where: { user_id } })
-    console.log(alreadyExists);
     
     if( !alreadyExists ){ throw new BadRequestError( 'Usuário não existe' ) }
 
     const post = await prisma.post.create({
         data: {
-            text: text,
-            author_id: user_id,
+            text,
+            user_id,
         }
     })
  

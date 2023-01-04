@@ -6,8 +6,8 @@ import { createUserService } from '../../services/user/createUser.service';
 const createUserController = async (req: Request, res: Response) => {
         const data: ICreateUser = req.body
         
-        const user = await createUserService(data)
-        return res.status(201).json(user)
+        const user = await createUserService( data )
+        return res.status(201).json( user )
 }
 
 export { createUserController }

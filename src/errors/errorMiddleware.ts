@@ -8,6 +8,8 @@ const errorMiddleware = (
     const statusCode = error.status ?? 500;
     const message = error.status ? error.message : 'Internal Server Error';
 
+    console.log( error );
+    
     return res.status( statusCode ).json({
         error:  message 
     })

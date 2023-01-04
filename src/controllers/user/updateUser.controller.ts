@@ -6,7 +6,7 @@ import { updateUserService } from "../../services/user/updateUser.service";
 
 const updateUserController = async ( req: Request, res: Response ) => {
     const { user_id }: IQueryUser = req.query;
-    const data: User = req.body;
+    const data: User = req.body;    
 
     const user = await updateUserService( user_id, data )
     return res.json( user )
