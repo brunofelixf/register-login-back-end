@@ -2,3 +2,4 @@
 migrations/
 .env
 dist/
+coverage/
